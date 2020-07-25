@@ -30,3 +30,12 @@ class RegistrationForm(forms.ModelForm):
         if commit:
             user.save()
         return user
+
+class LoginForm(forms.Form):
+    username = forms.CharField(label='User Name', max_length=100, required=True, help_text="Enter your username")
+    password = forms.CharField(label='Input Password', max_length=100, widget=forms.PasswordInput(), required=True, help_text="Enter your password")
+
+
+    class Meta:
+        model = UserProfile
+        fields = ('username', 'password')
