@@ -4,16 +4,22 @@
 <div>
     <a href="{% url 'create_note' %}">Create a note</a>
 </div>
-<div class="row col-md-9">
+<hr>
+<div class="row col-md-20">
 {% if notes %}
     {% for note in notes %}
-        <div class="col-md-4">
+        <div class="col-md-2">
             <div class="card mb-2">
                 <div class="card-body">
                     <h5 class="card-title">{{ note.title }}</h5>
                     <p class="card-text">{{ note.org_name }}</p>
                     <p class="card-text">{{ note.purpose }}</p>
                     <p class="card-text">{{ note.total_attendance }}</p>
+                    <a href="{% url 'edit_note' note.id %}" class="pull-left">
+                        <button type="button" class="btn btn-info">
+                            <span class="glyphicon glyphicon-edit"></span> Edit Note
+                        </button>
+                    </a>
                 </div>
             </div>
         </div>
