@@ -84,3 +84,16 @@ def create_note(request):
         form_data = NotesForm()
 
     return render(request, 'create-note.html', {'form': form_data})
+
+def edit_note(request, note_id):
+    note = get_object_or_404(Note, id=note_id)
+
+    form_data = NotesForm(request.POST or None, instance=note)
+
+    if form_data.is_valid():
+        form_data.save()
+        return redirect('dashboard')
+
+    context = {'form': form_data, 'note': note}
+
+    return render(request, 'edit-note.html', context)
