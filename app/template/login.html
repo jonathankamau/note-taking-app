@@ -14,5 +14,9 @@
     {% endfor %}
     </p>
 {% endfor %}
-<button type="submit">Login</button>
+{% if request.GET.next %}
+    <input type="hidden" name="next" value="{{ request.GET.next }}" />
+{% endif %}
+<input type="submit" value="Login"style="color:blue">
+
 {% endblock %}
