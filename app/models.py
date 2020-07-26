@@ -17,13 +17,12 @@ class UserProfile(BaseModel, User):
         return "User: {}".format(self.user.username)
 
 class Note(BaseModel):
-    note_id = models.IntegerField(primary_key=True)
     title = models.CharField(max_length=50)
     org_name = models.CharField(max_length=50)
     purpose = models.TextField(blank=False)
     content = models.TextField(blank=False)
     total_attendance = models.TextField(blank=False)
-    users = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     meeting_category = models.ForeignKey('MeetingCategory', on_delete=models.CASCADE)
 
     class Meta:
@@ -33,7 +32,6 @@ class Note(BaseModel):
         return "My Notes: {}".format(self.id)
 
 class MeetingCategory(BaseModel):
-    category_id = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=50)
     description = models.TextField(blank=False)
 
