@@ -1,0 +1,26 @@
+[
+    {
+      "pk": 1,
+      "model": "app.MeetingCategory",
+      "fields": {
+        "name": "General",
+        "description": ""
+      }
+    },
+    {
+      "model": "app.MeetingCategory",
+      "pk": 2,
+      "fields": {
+        "name": "Work",
+        "description": ""
+      }
+    },
+    {
+        "model": "app.MeetingCategory",
+        "pk": 3,
+        "fields": {
+          "name": "Other",
+          "description": ""
+        }
+      }
+  ]
