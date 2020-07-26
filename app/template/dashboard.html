@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content%}
+<h1>Meeting Notes</h1>
+<div class="row">
+{% for note in notes %}
+    <div class="col-md-4">
+        <div class="card mb-2">
+            <div class="card-body">
+                <h5 class="card-title">{{ note.title }}</h5>
+                <p class="card-text">{{ note.org_name }}</p>
+                <p class="card-text">{{ note.purpose }}</p>
+                <p class="card-text">{{ note.description }}</p>
+                <p class="card-text">{{ note.total_attendance }}</p>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
