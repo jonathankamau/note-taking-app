@@ -1,8 +1,10 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from app.models import User, Note, MeetingCategory
+from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, logout, authenticate
-from app.forms import RegistrationForm, LoginForm
+from django.contrib.auth.decorators import login_required
+from app.forms import RegistrationForm
 
 def register(request):
     if request.method == 'POST':
@@ -12,9 +14,6 @@ def register(request):
             form_data.save()
             password = form_data.cleaned_data.get('password')
 
-            password = form_data.cleaned_data.get('password')
-            # user = authenticate(username=username)
-
             return redirect('login')
     else:
         form_data = RegistrationForm()
@@ -23,23 +22,36 @@ def register(request):
 
 def login(request):
     if request.method == 'POST':
-        form_data = LoginForm(request.POST)
+        form_data = AuthenticationForm(data=request.POST)
 
         if form_data.is_valid():
             username = form_data.cleaned_data.get('username')
             password = form_data.cleaned_data.get('password')
             user = authenticate(username=username, password=password)
 
-            if user:  
-                return redirect('dashboard')
-            else:
-                return HttpResponse('Invalid Credentials')
+            if user is not None:
+                request.session['username'] = username  
+                if 'next' in request.POST:
+                    return redirect(request.POST.get('next'))
+                else:
+                    return redirect('dashboard')
     else:
-        form_data = LoginForm()
+        form_data = AuthenticationForm()
 
 
     return render(request, 'login.html', {'form': form_data})
 
+
 def dashboard(request):
 
-    return render(request, 'register.html')
+    username = request.session['username']
+    user_id = User.objects.get(username=username).pk
+    
+    notes = Note.objects.all().filter(user_id=user_id)
+    print(notes)
+
+    context = {
+        'notes': notes
+    }
+
+    return render(request, 'dashboard.html', context)
