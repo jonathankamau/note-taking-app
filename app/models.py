@@ -1,9 +1,10 @@
 from django.db import models
+from django.utils import timezone
 from django.contrib.auth.models import User
 
 class BaseModel(models.Model):
-    date_created = models.DateField(auto_now_add=True)
-    date_modified = models.DateField(auto_now=True)
+    date_created = models.DateField(default=timezone.now, editable=False)
+    date_modified = models.DateField(default=timezone.now, editable=False)
 
     class Meta:
         abstract = True
@@ -23,7 +24,7 @@ class Note(BaseModel):
     content = models.TextField(blank=False)
     total_attendance = models.TextField(blank=False)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    meeting_category = models.ForeignKey('MeetingCategory', on_delete=models.CASCADE)
+    meeting_category = models.CharField(max_length=50)
 
     class Meta:
         db_table = 'notes'
@@ -33,7 +34,7 @@ class Note(BaseModel):
 
 class MeetingCategory(BaseModel):
     name = models.CharField(max_length=50)
-    description = models.TextField(blank=False)
+    description = models.TextField(blank=True)
 
     class Meta:
         db_table = 'meeting_categories'

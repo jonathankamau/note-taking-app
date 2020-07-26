@@ -1,10 +1,12 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib import messages
+from django.contrib.auth import decorators, forms, login, logout, authenticate
 from django.http import HttpResponse
 from app.models import User, Note, MeetingCategory
-from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth import login, logout, authenticate
-from django.contrib.auth.decorators import login_required
-from app.forms import RegistrationForm
+from app.forms import RegistrationForm, NotesForm
+
+authentication_form = forms.AuthenticationForm()
+login_required = decorators.login_required()
 
 def register(request):
     if request.method == 'POST':
@@ -22,7 +24,7 @@ def register(request):
 
 def login(request):
     if request.method == 'POST':
-        form_data = AuthenticationForm(data=request.POST)
+        form_data = authentication_form(data=request.POST)
 
         if form_data.is_valid():
             username = form_data.cleaned_data.get('username')
@@ -36,7 +38,7 @@ def login(request):
                 else:
                     return redirect('dashboard')
     else:
-        form_data = AuthenticationForm()
+        form_data = authentication_form()
 
 
     return render(request, 'login.html', {'form': form_data})
@@ -55,3 +57,30 @@ def dashboard(request):
     }
 
     return render(request, 'dashboard.html', context)
+
+def create_note(request):
+    username = request.session['username']
+    user = User.objects.get(username=username)
+
+    id = request.GET.get('id', None)
+    if id is not None:
+        note = get_object_or_404(Notes, id=id)
+    else:
+        note = None
+
+    if request.method == 'POST':
+        form_data = NotesForm(request.POST)
+        print(form_data)
+
+        if form_data.is_valid():
+            update_user = form_data.save(commit=False)
+
+            update_user.user = user
+            update_user.save()
+            messages.add_message(request, messages.INFO, 'Note Added!')
+            return redirect('dashboard')
+
+    else:
+        form_data = NotesForm()
+
+    return render(request, 'create-note.html', {'form': form_data})
