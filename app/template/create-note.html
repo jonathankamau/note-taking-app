@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 {% block content%}
-<div class="container pure-border">
+<div class="container pure-border text-center">
     <div class="text-center">
         <h1 class="h4 text-gray-900 mb-4">Create a new note</h1>
-q
+    </div>
     <div class="col-md-12 forms">
     <form method="POST" action="{% url 'create_note' %}" class="pure-form pure-form-aligned">
         {% csrf_token %}
