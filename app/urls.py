@@ -26,5 +26,6 @@ urlpatterns = [
     url(r'^dashboard/$', views.dashboard, name='dashboard'),
     url(r'^notes/create/$', views.create_note, name='create_note'),
     url(r'^notes/edit/(?P<note_id>\d+)/$', views.edit_note, name='edit_note'),
-    url(r'^notes/search_results/$', views.search_notes, name='search_results')
+    url(r'^notes/search_results/$', views.search_notes, name='search_results'),
+    url(r'^notes/filter_results/$', views.filter_notes, name='filter_results')
 ]

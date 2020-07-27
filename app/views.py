@@ -52,7 +52,6 @@ def dashboard(request):
     context = {
         'notes': notes
     }
-    print(request.user.id)
 
     return render(request, 'dashboard.html', context)
 
@@ -104,3 +103,44 @@ def search_notes(request):
     context = {'search_results': search_results}
 
     return render(request, 'search_results.html', context)
+
+def is_param(input):
+    return input != '' and input is not None
+
+def filter_check(request):
+    notes = Note.objects.all().filter(
+        user_id=request.user.id)
+
+    org_name = request.GET.get('org_name')
+    purpose = request.GET.get('purpose')
+    min_attendees = request.GET.get('min_attendees')
+    max_attendees = request.GET.get('max_attendees')
+    from_date = request.GET.get('from_date')
+    to_date = request.GET.get('to_date')
+
+    if is_param(org_name):
+        notes = notes.filter(org_name__iexact=org_name)
+    if is_param(purpose):
+        notes = notes.filter(purpose__iexact=purpose)
+    if is_param(min_attendees):
+        notes = notes.filter(total_attendance__gte=min_attendees)
+    if is_param(max_attendees):
+        notes = notes.filter(total_attendance__lt=max_attendees)
+    if is_param(from_date):
+        notes = notes.filter(date_created__gte=from_date)
+    if is_param(to_date):
+        notes = notes.filter(date_created__lt=to_date)
+
+    return notes
+
+def filter_notes(request):
+
+    filter_results = filter_check(request)
+
+    context = {'filter_results': filter_results}
+
+    return render(request, 'filter_results.html', context)
+
+
+
+
