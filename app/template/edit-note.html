@@ -1,7 +1,11 @@
 {% extends 'base.html' %}
 {% block content%}
+<main class="container pure-border text-center">
+<div class="text-center">
+        <h1 class="h4 text-gray-900 mb-4">Edit Note</h1>
+    </div>
 <div class="col-md-12 forms">
-<form method="POST" action="{% url 'edit_note' note.id %}">
+<form method="POST" action="{% url 'edit_note' note.id %}" class="pure-form pure-form-aligned">
     {% csrf_token %}
     {% for field in form %}
     <p>
@@ -18,9 +22,11 @@
 {% if request.GET.next %}
     <input type="hidden" name="next" value="{{ request.GET.next }}" />
 {% endif %}
-<input type="submit" value="Update Note"style="color:blue">
+<div class="text-center">
+    <button type="submit" class="pure-button pure-button-primary">Edit Note</button>
+</div>
 </form>
 </div>
 
-
+</main>
 {% endblock %}
