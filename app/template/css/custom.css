@@ -2,5 +2,6 @@
     padding-left: 1000px;
 }
 .search {
-    float: right
+    float: right;
+    padding-right: 100px;
 }
