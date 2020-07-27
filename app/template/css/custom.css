@@ -5,3 +5,11 @@
     float: right;
     padding-right: 100px;
 }
+.navbar-bg {
+    background: burlywood;
+    font-weight: bold;
+    color: black;
+    text-shadow: 1px 1px green;
+    font-weight: 500;
+
+}
