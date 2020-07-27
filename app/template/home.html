@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content%}
+<div class="splash-container">
+    <div class="splash">
+        <h1 class="splash-head">Welcome to NoteWorthy!</h1>
+        <p class="splash-subhead">
+            The only note-taking app you will ever need!
+        </p>
+        <div class="call_to_action">
+            <a href="{% url 'register' %}" class="pure-button pure-button-primary">Sign Up</a>
+        </div>
+        <div class="call_to_action">
+            <a href="{% url 'login' %}" class="pure-button pure-button-primary">Sign In</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
