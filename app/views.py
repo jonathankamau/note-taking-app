@@ -55,7 +55,7 @@ def user_login(request):
 
     return render(request, 'login.html', {'form': form_data})
 
-
+@login_required
 def dashboard(request):
     
     notes = Note.objects.all().filter(
@@ -67,6 +67,7 @@ def dashboard(request):
 
     return render(request, 'dashboard.html', context)
 
+@login_required
 def create_note(request):
 
     id = request.GET.get('id', None)
@@ -92,6 +93,7 @@ def create_note(request):
 
     return render(request, 'create-note.html', {'form': form_data})
 
+@login_required
 def edit_note(request, note_id):
     note = get_object_or_404(Note, id=note_id)
 
@@ -105,6 +107,7 @@ def edit_note(request, note_id):
 
     return render(request, 'edit-note.html', context)
 
+@login_required
 def search_notes(request):
 
     search_query = request.GET.get('q')
@@ -119,6 +122,7 @@ def search_notes(request):
 def is_param(input):
     return input != '' and input is not None
 
+@login_required
 def filter_check(request):
     notes = Note.objects.all().filter(
         user_id=request.user.id)
@@ -145,6 +149,7 @@ def filter_check(request):
 
     return notes
 
+@login_required
 def filter_notes(request):
 
     filter_results = filter_check(request)
