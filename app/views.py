@@ -8,7 +8,14 @@ from app.forms import RegistrationForm, NotesForm
 authentication_form = forms.AuthenticationForm
 login_required = decorators.login_required
 
+def logout_user(request):
+    logout(request)
+    return redirect('home')
+
 def home(request):
+    if request.user.is_authenticated:
+        return redirect('dashboard')
+
     return render(request, 'home.html')
 
 
@@ -17,10 +24,11 @@ def register(request):
         form_data = RegistrationForm(request.POST)
 
         if form_data.is_valid():
-            form_data.save()
-            password = form_data.cleaned_data.get('password')
+            user = form_data.save()
 
-            return redirect('login')
+            login(request, user)
+            return render(request, 'dashboard.html')
+
     else:
         form_data = RegistrationForm()
 

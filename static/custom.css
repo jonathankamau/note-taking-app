@@ -5,3 +5,31 @@
     float: right;
     padding-right: 100px;
 }
+.navbar-bg {
+    background: burlywood;
+    font-weight: bold;
+    color: black;
+    text-shadow: 1px 1px green;
+    font-weight: 500;
+}
+.navbar-brand {
+    color: green;
+}
+ul {
+    list-style-type: none;
+}
+.text-links {
+    color: green;
+}
+.pure-border {
+    border: 8px solid green;
+    padding: 5em 5em;
+    background: burlywood;
+    align-items: center;
+}
+.card-border {
+    border: 2px solid green;
+    padding: 5em 10em;
+    background: burlywood;
+    align-items: center;
+}
