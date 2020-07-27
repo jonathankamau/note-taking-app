@@ -1,21 +1,23 @@
 {% extends 'base.html' %}
 {% block content%}
 
-<main class="container">
+<main class="container-fluid">
 <h1>{{ user.first_name }}'s Meeting Notes</h1>
-<div>
-    <a href="{% url 'create_note' %}">Create a note</a>
-</div>
-<div>
+<span>
+    <a href="{% url 'create_note' %}">Create a new note</a>
+</span>
+<span class="search">
+    <a href="{% url 'filter_results' %}">Filter Notes...</a>
+</span>
+<span class="search">
     <form action="{% url 'search_results' %}" method="get">
         <div>Search for note by title: <input name="q" type="text" placeholder="Search...">
         <button type="submit">Search</button>
         </div>
     </form>
-</div>
-</div>
+</span>
 <hr>
-<div class="container">
+<div class="container-fluid">
 <div class="row col-md-20">
 {% if notes %}
     {% for note in notes %}
