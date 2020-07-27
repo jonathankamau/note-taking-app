@@ -15,6 +15,9 @@
 .navbar-brand {
     color: green;
 }
+ul {
+    list-style-type: none;
+}
 .text-links {
     color: green;
 }

@@ -32,8 +32,8 @@
                             <li><a href="{% url 'logout' %}" class="navbar-brand">Logout</a></li>
                             <li><a href="{% url 'dashboard' %}" class="navbar-brand">Dashboard</a></li>
                         {% else %}
-                            <li><a href="{% url 'login' %}">Login</a></li>
-                            <li><a href="{% url 'register' %}">Sign Up</a></li>
+                            <li><a href="{% url 'login' %}" class="navbar-brand">Login</a></li>
+                            <li><a href="{% url 'register' %}" class="navbar-brand">Sign Up</a></li>
                         {% endif %}
                     </ul>
                 </div>
