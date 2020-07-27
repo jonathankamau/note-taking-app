@@ -28,7 +28,7 @@ SECRET_KEY = 'dfsdfgdfgfds'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['noteworthy-2020.herokuapp.com']
+ALLOWED_HOSTS = ['noteworthy-2020.herokuapp.com', 'noteworthy-staging.herokuapp.com']
 
 
 # Application definition
