@@ -1,53 +1,49 @@
 {% extends 'base.html' %}
 {% block content%}
 
-<main class="container">
+<div class="container pure-border text-center">
 <h1>{{ user.first_name }}'s Meeting Notes</h1>
 
-<div>
     <h2>Filter Parameters</h2>
     <hr/>
-    <form action="{% url 'filter_results' %}" method="GET">
-        <div class="form-row">
-            <div class="form-group col-12">
-                <div class="input-group">
+    <form action="{% url 'filter_results' %}" method="GET" class="pure-form pure-form-aligned">
+    <fieldset>
+        {% csrf_token %}
+            <div class="col-12">
                 <input name="org_name" type="text" placeholder="Search by name of organization...">
                 <span class="input-group-append">
                     <div class="input-group-text bg-transparent">
                         <i class="fa fa-search"></i>
                     </div>
                 </span>
-        </div>
-        <div class="form-row">
-            <div class="form-group col-12">
-                <div class="input-group">
+                </div>
+            <div class="col-12">
                 <input name="purpose" type="text" placeholder="Search by purpose of the meeting...">
                 <span class="input-group-append">
                     <div class="input-group-text bg-transparent">
                         <i class="fa fa-search"></i>
                     </div>
                 </span>
-        </div>
-        <div class="form-group col-md-2 col-lg-2">
-            <label for="MinAttendees">Minimum No. of attendees</label>
-            <input type="number" min=0 class="form-control" placeholder="0" id="MinAttendees" name="min_attendees">
+            </div>
+        <div class="col-12">
+            <label for="MinAttendees">Minimum No. of attendees</label><br>
+            <input type="number" min=0 placeholder="0" id="MinAttendees" name="min_attendees">
           </div>
-          <div class="form-group col-md-2 col-lg-2">
-            <label for="MaxAttendees">Maximum No. of attendees</label>
-            <input type="number" min=0 class="form-control" placeholder="1000?" id="MaxAttendees" name="max_attendees">
+          <div class="form-group col-12">
+            <label for="MaxAttendees">Maximum No. of attendees</label><br>
+            <input type="number" min=0 placeholder="1000?" id="MaxAttendees" name="max_attendees">
           </div>
-        <div class="form-row">
-            <div class="form-group col-md-2 col-lg-2">
-                <label for="FromDate">From Date</label>
-                <input type="date" class="form-control" id="FromDate" name="from_date">
+            <div class="form-group col-12">
+                <label for="FromDate">From Date</label><br>
+                <input type="date" id="FromDate" name="from_date">
           </div>
-          <div class="form-group col-md-2 col-lg-2">
-                <label for="ToDate">To Date</label>
-                <input type="date" class="form-control" id="ToDate" name="to_date">
+          <div class="form-group col-12">
+                <label for="ToDate">To Date</label><br>
+                <input type="date" id="ToDate" name="to_date">
           </div>
     <button type="submit" class="btn btn-primary">Search</button>
+    </fieldset>
     </form>
-</div>
 <hr>
 <div class="container">
 <div class="row col-md-20">
@@ -66,8 +62,8 @@
         </div>
         {% endfor %}
 {% else %}
-    <h2>Your filtered notes will be shown here</h2>
+    <h2>No filtered notes at the moment</h2>
 {% endif %}
 </div>
-</main>
+</div>
 {% endblock %}

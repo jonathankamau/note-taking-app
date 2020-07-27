@@ -1,24 +1,32 @@
 {% extends 'base.html' %}
 {% block content%}
-<div class="col-md-12 forms">
-<form method="POST" action="{% url 'create_note' %}">
-    {% csrf_token %}
-    {% for field in form %}
-    <p>
-        {{ field.label_tag }}<br>
-        {{ field }}
-        {% if field.help_text %}
-            <small style="color: grey">{{ field.help_text }}</small>
-        {% endif %}
-    {% for error in field.errors %}
-        <p style="color: red">{{ error }}</p>
+<div class="container pure-border text-center">
+    <div class="text-center">
+        <h1 class="h4 text-gray-900 mb-4">Create a new note</h1>
+    </div>
+    <div class="col-md-12 forms">
+    <form method="POST" action="{% url 'create_note' %}" class="pure-form pure-form-aligned">
+        {% csrf_token %}
+        {% for field in form %}
+        <p>
+            {{ field.label_tag }}<br>
+            {{ field }}
+            {% if field.help_text %}
+                <small style="color: grey">{{ field.help_text }}</small>
+            {% endif %}
+        {% for error in field.errors %}
+            <p style="color: red">{{ error }}</p>
+        {% endfor %}
+        </p>
     {% endfor %}
-    </p>
-{% endfor %}
-{% if request.GET.next %}
-    <input type="hidden" name="next" value="{{ request.GET.next }}" />
-{% endif %}
-<input type="submit" value="Create Note"style="color:blue">
-</form>
+    {% if request.GET.next %}
+        <input type="hidden" name="next" value="{{ request.GET.next }}" />
+    {% endif %}
+    <div class="text-center">
+        <button type="submit" class="pure-button pure-button-primary">Create Note</button>
+    </div>
+    </form>
+    </div>
+    </div>
 </div>
 {% endblock %}

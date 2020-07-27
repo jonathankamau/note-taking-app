@@ -1,21 +1,22 @@
 {% extends 'base.html' %}
 {% block content%}
+<main class="container pure-border text-center">
 <h1>Search Results</h1>
 
 <hr>
 <div class="row col-md-20">
 {% if search_results %}
     {% for result in search_results %}
-        <div class="col-md-2">
+        <div class="col-md-4  card-border">
             <div class="card mb-2">
                 <div class="card-body">
-                    <h5 class="card-title">{{ result.title }}</h5>
-                    <p class="card-text">{{ result.org_name }}</p>
-                    <p class="card-text">{{ result.purpose }}</p>
-                    <p class="card-text">{{ result.total_attendance }}</p>
-                    <p class="card-text">Created on {{ result.date_created }}</p>
-                    <a href="{% url 'edit_note' result.id %}" class="pull-left">
-                        <button type="button" class="btn btn-info">
+                    <h5 class="card-title">Title: {{ result.title }}</h5>
+                    <p class="card-text">Organization Name: {{ result.org_name }}</p>
+                    <p class="card-text">Purpose of Meeting: {{ result.purpose }}</p>
+                    <p class="card-text">Total Attendance: {{ result.total_attendance }}</p>
+                    <p class="card-text">Created on: {{ result.date_created }}</p>
+                    <a href="{% url 'edit_note' result.id %}">
+                        <button type="button" class="pure-button pure-button-primary">
                             <span class="glyphicon glyphicon-edit"></span> Edit Note
                         </button>
                     </a>
@@ -28,10 +29,11 @@
 {% endif %}
 </div>
 <div>
-    <a href="{% url 'dashboard' %}" class="pull-left">
-        <button type="button">
+    <a href="{% url 'dashboard' %}" class="text-center">
+        <button type="button" class="pure-button pure-button-primary">
             <span class="glyphicon glyphicon-edit"></span> Back to Dashboard
         </button>
     </a>
 </div>
+</main>
 {% endblock %}
