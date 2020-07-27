@@ -28,10 +28,10 @@
                     <ul class="nav navbar-nav navbar-right">
                         {% if user.is_authenticated %}
                             <li><a href="">Logout</a></li>
-                            <li><a href="">Accounts</a></li>
+                            <li><a href="{% url 'dashboard' %}">Dashboard</a></li>
                         {% else %}
-                            <li><a href="/accounts/login">Login</a></li>
-                            <li><a href="/accounts/register">Sign Up</a></li>
+                            <li><a href="{% url 'login' %}">Login</a></li>
+                            <li><a href="{% url 'register' %}">Sign Up</a></li>
                         {% endif %}
                     </ul>
                 </div>
