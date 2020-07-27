@@ -22,8 +22,9 @@ urlpatterns = [
     url('admin/', admin.site.urls),
     url(r'^$', views.register, name='register'),
     url(r'accounts/register/$', views.register, name='register'),
-    url(r'^accounts/login/$', views.login, name='login'),
+    url(r'^accounts/login/$', views.user_login, name='login'),
     url(r'^dashboard/$', views.dashboard, name='dashboard'),
     url(r'^notes/create/$', views.create_note, name='create_note'),
-    url(r'^notes/edit/(?P<note_id>\d+)/$', views.edit_note, name='edit_note')
+    url(r'^notes/edit/(?P<note_id>\d+)/$', views.edit_note, name='edit_note'),
+    url(r'^notes/search_results/$', views.search_notes, name='search_results')
 ]

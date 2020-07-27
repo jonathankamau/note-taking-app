@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block content%}
+<h1>Search Results</h1>
+
+<hr>
+<div class="row col-md-20">
+{% if search_results %}
+    {% for result in search_results %}
+        <div class="col-md-2">
+            <div class="card mb-2">
+                <div class="card-body">
+                    <h5 class="card-title">{{ result.title }}</h5>
+                    <p class="card-text">{{ result.org_name }}</p>
+                    <p class="card-text">{{ result.purpose }}</p>
+                    <p class="card-text">{{ result.total_attendance }}</p>
+                    <p class="card-text">Created on {{ result.date_created }}</p>
+                    <a href="{% url 'edit_note' result.id %}" class="pull-left">
+                        <button type="button" class="btn btn-info">
+                            <span class="glyphicon glyphicon-edit"></span> Edit Note
+                        </button>
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+{% else %}
+    <h2>Search item not found!</h2>
+{% endif %}
+</div>
+<div>
+    <a href="{% url 'dashboard' %}" class="pull-left">
+        <button type="button">
+            <span class="glyphicon glyphicon-edit"></span> Back to Dashboard
+        </button>
+    </a>
+</div>
+{% endblock %}

@@ -3,8 +3,8 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 
 class BaseModel(models.Model):
-    date_created = models.DateField(default=timezone.now, editable=False)
-    date_modified = models.DateField(default=timezone.now, editable=False)
+    date_created = models.DateTimeField(auto_now_add=True)
+    date_modified = models.DateTimeField(auto_now=True)
 
     class Meta:
         abstract = True
@@ -32,7 +32,9 @@ class Note(BaseModel):
     def __str__(self):
         return "My Notes: {}".format(self.id)
 
-class MeetingCategory(BaseModel):
+class MeetingCategory(models.Model):
+    date_created = models.DateTimeField(default=timezone.now, editable=False)
+    date_modified = models.DateTimeField(default=timezone.now, editable=False)
     name = models.CharField(max_length=50)
     description = models.TextField(blank=True)
 
