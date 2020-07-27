@@ -5,10 +5,10 @@
 <h1>{{ user.first_name }}'s Meeting Notes</h1>
 <br/>
 <span class="call_to_action">
-    <h4><a href="{% url 'create_note' %}">Create a new note</a></h4>
+    <h4><a href="{% url 'create_note' %}" class="text-links">Create a new note</a></h4>
 </span>
 <span class="call_to_action">
-    <h4><a href="{% url 'filter_results' %}">Filter Notes...</a></h4>
+    <h4><a href="{% url 'filter_results' %}" class="text-links">Filter Notes...</a></h4>
 </span>
 <span class="call_to_action">
     <form action="{% url 'search_results' %}" method="get">
@@ -22,16 +22,16 @@
 <div class="row col-md-20">
 {% if notes %}
     {% for note in notes %}
-        <div class="col-md-2 pure-border">
+        <div class="col-md-4 card-border">
             <div class="card mb-2">
                 <div class="card-body">
-                    <h5 class="card-title">{{ note.title }}</h5>
-                    <p class="card-text">{{ note.org_name }}</p>
-                    <p class="card-text">{{ note.purpose }}</p>
-                    <p class="card-text">{{ note.total_attendance }}</p>
-                    <p class="card-text">Created on {{ note.date_created }}</p>
-                    <a href="{% url 'edit_note' note.id %}" class="pull-left">
-                        <button type="button" class="btn btn-info">
+                    <h5 class="card-title">Title: {{ note.title }}</h5>
+                    <p class="card-text">Organization Name: {{ note.org_name }}</p>
+                    <p class="card-text">Purpose of Meeting: {{ note.purpose }}</p>
+                    <p class="card-text">Total Attendance: {{ note.total_attendance }}</p>
+                    <p class="card-text">Created on: {{ note.date_created }}</p>
+                    <a href="{% url 'edit_note' note.id %}">
+                        <button type="button" class="pure-button pure-button-primary">
                             <span class="glyphicon glyphicon-edit"></span> Edit Note
                         </button>
                     </a>
