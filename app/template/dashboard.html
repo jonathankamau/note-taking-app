@@ -1,19 +1,20 @@
 {% extends 'base.html' %}
 {% block content%}
 
-<main class="container-fluid">
+<main class="container pure-border text-center">
 <h1>{{ user.first_name }}'s Meeting Notes</h1>
-<span>
-    <a href="{% url 'create_note' %}">Create a new note</a>
+<br/>
+<span class="call_to_action">
+    <h4><a href="{% url 'create_note' %}">Create a new note</a></h4>
 </span>
-<span class="search">
-    <a href="{% url 'filter_results' %}">Filter Notes...</a>
+<span class="call_to_action">
+    <h4><a href="{% url 'filter_results' %}">Filter Notes...</a></h4>
 </span>
-<span class="search">
+<span class="call_to_action">
     <form action="{% url 'search_results' %}" method="get">
-        <div>Search for note by title: <input name="q" type="text" placeholder="Search...">
+        <h4><div>Search for note by title: <input name="q" type="text" placeholder="Search...">
         <button type="submit">Search</button>
-        </div>
+        </div></h4>
     </form>
 </span>
 <hr>
@@ -21,7 +22,7 @@
 <div class="row col-md-20">
 {% if notes %}
     {% for note in notes %}
-        <div class="col-md-2">
+        <div class="col-md-2 pure-border">
             <div class="card mb-2">
                 <div class="card-body">
                     <h5 class="card-title">{{ note.title }}</h5>
@@ -39,7 +40,9 @@
         </div>
         {% endfor %}
 {% else %}
+<div class="text-center">
     <h2>You don't have any notes yet!</h2>
+</div>
 {% endif %}
 </div>
 </main>
