@@ -41,22 +41,21 @@
                 <label for="ToDate">To Date</label><br>
                 <input type="date" id="ToDate" name="to_date">
           </div>
-    <button type="submit" class="btn btn-primary">Search</button>
+    <button type="submit" class="pure-button pure-button-primary">Filter</button>
     </fieldset>
     </form>
 <hr>
-<div class="container">
 <div class="row col-md-20">
 {% if filter_results %}
     {% for result in filter_results %}
-        <div class="col-md-2">
+        <div class="col-md-4 card-border">
             <div class="card mb-2">
                 <div class="card-body">
-                    <h5 class="card-title">{{ result.title }}</h5>
-                    <p class="card-text">{{ result.org_name }}</p>
-                    <p class="card-text">{{ result.purpose }}</p>
-                    <p class="card-text">{{ result.total_attendance }}</p>
-                    <p class="card-text">Created on {{ result.date_created }}</p>
+                    <h5 class="card-title">Title: {{ result.title }}</h5>
+                    <p class="card-text">Organization Name: {{ result.org_name }}</p>
+                    <p class="card-text">Purpose of Meeting: {{ result.purpose }}</p>
+                    <p class="card-text">Total Attendance: {{ result.total_attendance }}</p>
+                    <p class="card-text">Created on: {{ result.date_created }}</p>
                 </div>
             </div>
         </div>
