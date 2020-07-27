@@ -72,7 +72,7 @@ label {
  * I want my pure-button elements to look a little different
  */
 .pure-button {
-    background-color: #1f8dd6;
+    background-color: green;
     color: white;
     padding: 0.5em 2em;
     border-radius: 5px;
@@ -83,13 +83,6 @@ a.pure-button-primary {
     color: black;
     border-radius: 5px;
     font-size: 120%;
-}
-
-.pure-border {
-    border: 8px solid green;
-    padding: 5em 5em;
-    background: burlywood;
-    align-items: center;
 }
 
 
