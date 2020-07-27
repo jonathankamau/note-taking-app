@@ -8,6 +8,10 @@ from app.forms import RegistrationForm, NotesForm
 authentication_form = forms.AuthenticationForm
 login_required = decorators.login_required
 
+def home(request):
+    return render(request, 'home.html')
+
+
 def register(request):
     if request.method == 'POST':
         form_data = RegistrationForm(request.POST)
