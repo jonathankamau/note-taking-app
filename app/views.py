@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
-from django.contrib.auth import decorators, forms, login, logout, authenticate
+from django.contrib.auth import (decorators, forms, 
+                                 login, logout, authenticate)
 from django.http import HttpResponse
 from app.models import User, Note, MeetingCategory, models
 from app.forms import RegistrationForm, NotesForm
@@ -92,6 +93,15 @@ def create_note(request):
         form_data = NotesForm()
 
     return render(request, 'create-note.html', {'form': form_data})
+
+@login_required
+def view_note(request, note_id):
+    note = Note.objects.filter(id=note_id)
+
+    context = {'note_details': note}
+
+    return render(request, 'view-note.html', context)
+
 
 @login_required
 def edit_note(request, note_id):
