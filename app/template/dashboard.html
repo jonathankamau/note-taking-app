@@ -30,6 +30,11 @@
                     <p class="card-text">Purpose of Meeting: {{ note.purpose }}</p>
                     <p class="card-text">Total Attendance: {{ note.total_attendance }}</p>
                     <p class="card-text">Created on: {{ note.date_created }}</p>
+                    <a href="{% url 'view_note' note.id %}">
+                        <button type="button" class="pure-button pure-button-primary">
+                            <span class="glyphicon glyphicon-edit"></span> View Note
+                        </button>
+                    </a>
                     <a href="{% url 'edit_note' note.id %}">
                         <button type="button" class="pure-button pure-button-primary">
                             <span class="glyphicon glyphicon-edit"></span> Edit Note
