@@ -1,7 +1,7 @@
 # Introducing...
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/jonathankamau/note-taking-app/master/data/images/noteworthy.gif"/>
+  <img src="https://raw.githubusercontent.com/jonathankamau/note-taking-app/master/app/data/noteworthy.gif"/>
 </p>
 
 ## An open-source simple Note Taking App built with Django that allows you to make meeting notes conveniently and efficiently. 
