@@ -4,15 +4,16 @@
   <img src="https://raw.githubusercontent.com/jonathankamau/note-taking-app/master/app/data/noteworthy.gif"/>
 </p>
 
-## An open-source simple Note Taking App built with Django that allows you to make meeting notes conveniently and efficiently. 
+### An open-source simple Note Taking App built with Django that allows you to make meeting notes conveniently and efficiently. 
 
-## It can be accessed LIVE here: https://noteworthy-2020.herokuapp.com/
+### It can be accessed LIVE here: https://noteworthy-2020.herokuapp.com/
 
-# Technologies Used
-### Python 3.7.8
-### Django 3.0.8
+## Technologies Used
+### - Python 3.7.8
+### - Django 3.0.8
+### - PostgreSQL
 
-# Installation
+## Installation
 
 1. create a working directory
 
