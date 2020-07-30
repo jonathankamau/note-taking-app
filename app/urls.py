@@ -14,20 +14,17 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.conf.urls import url
+from django.conf.urls import url, include
 from app import views
 
+handler404 = 'app.views.check_for_404'
 
+# URL patterns 
 urlpatterns = [
     url('admin/', admin.site.urls),
     url(r'^$', views.home, name='home'),
-    url(r'^accounts/register/$', views.RegisterView.as_view(), name='register'),
-    url(r'^accounts/login/$', views.LoginView.as_view(), name='login'),
-    url(r'^dashboard/$', views.dashboard, name='dashboard'),
-    url(r'^notes/create/$', views.create_note, name='create_note'),
-    url(r'^notes/view/(?P<note_id>\d+)/$', views.view_note, name='view_note'),
-    url(r'^notes/edit/(?P<note_id>\d+)/$', views.edit_note, name='edit_note'),
-    url(r'^notes/search_results/$', views.search_notes, name='search_results'),
-    url(r'^notes/filter_results/$', views.filter_notes, name='filter_results'),
+    url(r'^', include('app.components.account.urls')),
+    url(r'^', include('app.components.dashboard.urls')),
+    url(r'^', include('app.components.notes.urls')),
     url(r'^accounts/logout/$', views.logout_user, name='logout')
 ]
