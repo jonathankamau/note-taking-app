@@ -21,8 +21,8 @@ from app import views
 urlpatterns = [
     url('admin/', admin.site.urls),
     url(r'^$', views.home, name='home'),
-    url(r'accounts/register/$', views.register, name='register'),
-    url(r'^accounts/login/$', views.user_login, name='login'),
+    url(r'^accounts/register/$', views.RegisterView.as_view(), name='register'),
+    url(r'^accounts/login/$', views.LoginView.as_view(), name='login'),
     url(r'^dashboard/$', views.dashboard, name='dashboard'),
     url(r'^notes/create/$', views.create_note, name='create_note'),
     url(r'^notes/view/(?P<note_id>\d+)/$', views.view_note, name='view_note'),

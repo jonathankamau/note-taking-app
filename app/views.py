@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth import (decorators, forms, 
                                  login, logout, authenticate)
+
+from django.views.generic import View
 from django.http import HttpResponse
 from app.models import User, Note, MeetingCategory, models
 from app.forms import RegistrationForm, NotesForm
@@ -9,9 +11,12 @@ from app.forms import RegistrationForm, NotesForm
 authentication_form = forms.AuthenticationForm
 login_required = decorators.login_required
 
-def logout_user(request):
-    logout(request)
-    return redirect('home')
+
+        
+        
+
+
+
 
 def home(request):
     if request.user.is_authenticated:
@@ -20,41 +25,12 @@ def home(request):
     return render(request, 'home.html')
 
 
-def register(request):
-    if request.method == 'POST':
-        form_data = RegistrationForm(request.POST)
-
-        if form_data.is_valid():
-            user = form_data.save()
-
-            login(request, user)
-            return render(request, 'dashboard.html')
-
-    else:
-        form_data = RegistrationForm()
-
-    return render(request, 'register.html', {'form': form_data})
-
-def user_login(request):
-    if request.method == 'POST':
-        form_data = authentication_form(data=request.POST)
-
-        if form_data.is_valid():
-            username = form_data.cleaned_data.get('username')
-            password = form_data.cleaned_data.get('password')
-            user = authenticate(username=username, password=password)
-
-            if user is not None:
-                login(request, user) 
-                if 'next' in request.POST:
-                    return redirect(request.POST.get('next'))
-                else:
-                    return redirect('dashboard')
-    else:
-        form_data = authentication_form()
 
 
-    return render(request, 'login.html', {'form': form_data})
+
+
+
+    
 
 @login_required
 def dashboard(request):
@@ -67,6 +43,7 @@ def dashboard(request):
     }
 
     return render(request, 'dashboard.html', context)
+    
 
 @login_required
 def create_note(request):
