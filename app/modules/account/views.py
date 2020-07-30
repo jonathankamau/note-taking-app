@@ -1,6 +1,13 @@
-from django.views.generic import View
+"""
+Accounts class based views.
+"""
+
+from app.views import *
+
+authentication_form = forms.AuthenticationForm
 
 class RegisterView(View):
+    """ Register Class View methods for the signup form."""
 
     def __init__(self):
         self.template_form = 'register.html'
@@ -23,6 +30,7 @@ class RegisterView(View):
     
 
 class LoginView(View):
+    """ Login Class View methods for the signup form."""
 
     def __init__(self):
         self.template_form = 'login.html'
@@ -47,8 +55,3 @@ class LoginView(View):
                     return redirect('dashboard')
 
         return render(request, self.template_form, {'form': form_data})
-
-
-def logout_user(request):
-    logout(request)
-    return redirect('home')
