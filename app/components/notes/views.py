@@ -128,11 +128,15 @@ class NoteEditView(View):
         self.template_form = 'edit-note.html'
 
     @method_decorator(login_required)
-    def get(self, request):
+    def get(self, request, note_id):
 
-        return render(
-            request, self.template_form, {'form': NotesForm()}
-            )
+        note = get_object_or_404(Note, id=note_id)
+
+        form_data = NotesForm(request.POST or None, instance=note)
+
+        context = {'form': form_data, 'note': note}
+
+        return render(request, self.template_form, context)
 
     @method_decorator(login_required)
     def post(self, request, note_id):
