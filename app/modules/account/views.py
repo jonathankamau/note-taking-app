@@ -48,6 +48,7 @@ class LoginView(View):
 
         return render(request, self.template_form, {'form': form_data})
 
+
 def logout_user(request):
     logout(request)
     return redirect('home')
