@@ -1,6 +1,7 @@
 from app.tests.test_base import BaseTestClass
 
 class TestSignUp(BaseTestClass):
+    """ Test cases for the registration class."""
 
     def test_user_is_registered(self):
 
