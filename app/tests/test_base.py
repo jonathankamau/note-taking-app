@@ -1,6 +1,4 @@
-import json
-from django.test import Client, TestCase, RequestFactory
-from app.models import UserProfile
+from django.test import Client, TestCase
 from django.urls import reverse
 
 class BaseTestClass(TestCase):

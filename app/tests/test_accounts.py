@@ -1,5 +1,4 @@
-from app.tests.test_base import BaseTestClass, RequestFactory, UserProfile
-from app.components.account.views import RegisterView
+from app.tests.test_base import BaseTestClass
 
 class TestSignUp(BaseTestClass):
 
