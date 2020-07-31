@@ -40,6 +40,11 @@
                             <span class="glyphicon glyphicon-edit"></span> Edit Note
                         </button>
                     </a>
+                    <a href="{% url 'delete_note' note.id %}">
+                        <button type="button" class="pure-button pure-button-primary">
+                            <span class="glyphicon glyphicon-edit"></span> Delete Note
+                        </button>
+                    </a>
                 </div>
             </div>
         </div>

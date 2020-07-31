@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block content%}
+<div class="container pure-border text-center">
+<div class="text-center">
+        <h1 class="h4 text-gray-900 mb-4">Are you sure you want to delete the below Note?</h1>
+    </div>
+<div class="row col-md-20">
+{% if note_details %}
+    {% for detail in note_details %}
+        <div class="col-md-13 card-border">
+            <div class="card mb-2">
+                <div class="card-body">
+                    <h5 class="card-title">Title: {{ detail.title }}</h5>
+                    <p class="card-text">Organization Name: {{ detail.org_name }}</p>
+                    <p class="card-text">Purpose of Meeting: {{ detail.purpose }}</p>
+                    <p class="card-text">Total Attendance: {{ detail.total_attendance }}</p>
+                    <p class="card-text">Created on: {{ detail.date_created }}</p>
+                    <hr>
+                    <h5>Content</h5>
+                    <p class="card-text">{{ detail.content }}</p>
+
+                </div>
+            </div>
+            <hr>
+            <a href="{% url 'dashboard' %}" class="text-center">
+        <button type="button" class="pure-button pure-button-primary">
+            <span class="glyphicon glyphicon-edit"></span> Back to Dashboard
+        </button>
+    <form action="{% url 'delete_note' detail.id %}" method="POST">
+        {% csrf_token %}
+        <div class="text-center">
+    <button type="submit" class="pure-button pure-button-primary">Delete Note</button>
+    </div>
+    </form>
+    </a>
+        </div>
+        {% endfor %}
+{% else %}
+    <h2>Could note retrieve note!</h2>
+{% endif %}
+</div>
+</div>
+{% endblock %}
