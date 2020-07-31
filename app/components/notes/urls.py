@@ -1,6 +1,7 @@
 from django.conf.urls import url
 from app.components.notes.views import (
-    NoteCreateView, NoteDisplayView, NoteSearchView, NoteFilterView, NoteEditView)
+    NoteCreateView, NoteDisplayView, NoteDeleteView,
+    NoteSearchView, NoteFilterView, NoteEditView)
 
 
 urlpatterns = [
@@ -9,4 +10,5 @@ urlpatterns = [
     url(r'^notes/search_results/$', NoteSearchView.as_view(), name='search_results'),
     url(r'^notes/filter_results/$', NoteFilterView.as_view(), name='filter_results'),
     url(r'^notes/edit/(?P<note_id>\d+)/$', NoteEditView.as_view(), name='edit_note'),
+    url(r'^notes/delete/(?P<note_id>\d+)/$', NoteDeleteView.as_view(), name='delete_note'),
 ]
