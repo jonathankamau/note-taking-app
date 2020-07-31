@@ -6,9 +6,9 @@ jobs:
       - image: postgres
         environment:
           POSTGRES_USER: notetaker_test
-          POSTGRES_PASSWORD: ""
+          POSTGRES_PASSWORD: "testpassword"
           POSTGRES_DB: test_notetaker
-          DATABASE_URL: "postgres://root@localhost:5432/test_notetaker"
+
     steps:
       - checkout
       - restore_cache:
