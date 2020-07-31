@@ -78,16 +78,28 @@ WSGI_APPLICATION = 'app.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-DATABASES = {
+if 'test' in sys.argv:
+    DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'notetaker',
-        'USER': 'notetaker_admin',
+        'NAME': 'test_notetaker',
+        'USER': 'notetaker_test',
         'PASSWORD': '',
         'HOST': 'localhost',
         'PORT': '5432',
     }
 }
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'notetaker',
+            'USER': 'notetaker_admin',
+            'PASSWORD': '',
+            'HOST': 'localhost',
+            'PORT': '5432',
+        }
+    }
 
 
 # Password validation
