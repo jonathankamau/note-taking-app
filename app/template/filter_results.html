@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% block content%}
+{% load tz %}
 
 <div class="container pure-border text-center">
 <h1>{{ user.first_name }}'s Meeting Notes</h1>
@@ -35,11 +36,11 @@
           </div>
             <div class="form-group col-12">
                 <label for="FromDate">From Date</label><br>
-                <input type="date" id="FromDate" name="from_date">
+                <input type="datetime-local" id="FromDate" name="from_date">
           </div>
           <div class="form-group col-12">
                 <label for="ToDate">To Date</label><br>
-                <input type="date" id="ToDate" name="to_date">
+                <input type="datetime-local" id="ToDate" name="to_date">
           </div>
     <button type="submit" class="pure-button pure-button-primary">Filter</button>
     </fieldset>
@@ -55,7 +56,7 @@
                     <p class="card-text">Organization Name: {{ result.org_name }}</p>
                     <p class="card-text">Purpose of Meeting: {{ result.purpose }}</p>
                     <p class="card-text">Total Attendance: {{ result.total_attendance }}</p>
-                    <p class="card-text">Created on: {{ result.date_created }}</p>
+                    <p class="card-text">Created on: {{ result.date_created|localtime }}</p>
                 </div>
             </div>
         </div>
