@@ -27,7 +27,7 @@ class NotesForm(forms.ModelForm):
     org_name = forms.CharField(label='Organization Name', max_length=100, required=True)
     purpose = forms.CharField(label='Purpose of the meeting', max_length=100, required=True)
     content = forms.CharField(label='Add your Note here', max_length=500, required=True, widget=forms.Textarea)
-    total_attendance = forms.IntegerField(label='Enter the total number of participaants', required=True)
+    total_attendance = forms.IntegerField(label='Enter the total number of participants', required=True)
 
     categories = [(prop['name'], prop['name']) for prop in MeetingCategory.objects.values('name').distinct()]
     meeting_category = forms.ChoiceField(label='Select meeting category', required=True, choices=categories)
