@@ -22,7 +22,7 @@ class Note(BaseModel):
     org_name = models.CharField(max_length=50)
     purpose = models.TextField(blank=False)
     content = models.TextField(blank=False)
-    total_attendance = models.TextField(blank=False)
+    total_attendance = models.PositiveIntegerField(blank=False)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     meeting_category = models.CharField(max_length=50)
 

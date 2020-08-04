@@ -152,4 +152,26 @@ class NoteEditView(View):
 
         return render(request, self.template_form, context)
 
+class NoteDeleteView(View):
+    """ Note Delete Class View methods."""
+
+    def __init__(self):
+
+        self.template_form = 'delete_note.html'
+
+    @method_decorator(login_required)
+    def get(self, request, note_id):
+        note = Note.objects.filter(id=note_id)
+
+        context = {'note_details': note}
+
+        return render(request, self.template_form, context)
+
+    def post(self, request, note_id):
+
+        note = Note.objects.filter(id=note_id)
+
+        note.delete()
+
+        return redirect('dashboard')
 
